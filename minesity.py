@@ -291,6 +291,9 @@ async def start_cmd(message):
     status_block = 'off'
     chat_id = message.chat.id
     cursor.execute(f"SELECT user_id FROM users WHERE user_id = '{user_id}'")
+     await message.reply(
+        f' 👋Привет {name1}\nЯ бот для игры в различные игры.\nТак же ты можешь добавить меня в беседу для игры с друзьями.\n🆘 Чтобы узнать все команды введи "Помощь"\nПриятной игры!😊',
+                         parse_mode='html')
     if cursor.fetchone() is None:
         cursor.execute("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ? , ?, ? , ? , ? , ? , ? , ? , ? , ?, ?, ?);",
                        (user_id, 1, 1, 10000, 0, 0, 0, 0, 10, 0, 0, user_name, user_status, 0, 0, 0, 0, 0,0,0,0,0,0,0,0, 0, pet_name,0,0,0, 0, 0, 0, 0, status_block, user_prefix, 0))
@@ -319,9 +322,6 @@ async def start_cmd(message):
         return
 
     name1 = message.from_user.get_mention(as_html=True)
-    await message.reply(
-        f' 👋Привет {name1}\nЯ бот для игры в различные игры.\nТебе выдан подарок в размере 10.000$.\n\nТак же ты можешь добавить меня в беседу для игры с друзьями.\n🆘 Чтобы узнать все команды введи "Помощь"\nПриятной игры!😊',
-                         parse_mode='html')
 
 @dp.message_handler(commands=['мут', 'mute'], commands_prefix='!?./', is_chat_admin=True)
 async def mute(message):
