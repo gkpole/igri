@@ -291,7 +291,7 @@ async def start_cmd(message):
     status_block = 'off'
     chat_id = message.chat.id
     cursor.execute(f"SELECT user_id FROM users WHERE user_id = '{user_id}'")
-     await message.reply(
+    await message.reply(
         f' 👋Привет {name1}\nЯ бот для игры в различные игры.\nТак же ты можешь добавить меня в беседу для игры с друзьями.\n🆘 Чтобы узнать все команды введи "Помощь"\nПриятной игры!😊',
                          parse_mode='html')
     if cursor.fetchone() is None:
